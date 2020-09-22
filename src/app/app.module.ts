@@ -3,10 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { RoomlistComponent } from './roomlist/roomlist.component';
+import { AddroomComponent } from './addroom/addroom.component';
+import { ChatroomComponent } from './chatroom/chatroom.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RoomlistComponent,
+    AddroomComponent,
+    ChatroomComponent
   ],
   imports: [
     BrowserModule,
