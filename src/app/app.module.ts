@@ -7,6 +7,11 @@ import { LoginComponent } from './login/login.component';
 import { RoomlistComponent } from './roomlist/roomlist.component';
 import { AddroomComponent } from './addroom/addroom.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import {environment} from "../environments/environment";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireDatabaseModule} from "@angular/fire/database";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFireStorageModule} from "@angular/fire/storage";
 
 @NgModule({
   declarations: [
@@ -14,11 +19,18 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
     LoginComponent,
     RoomlistComponent,
     AddroomComponent,
-    ChatroomComponent
+    ChatroomComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'roomtochat'),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
