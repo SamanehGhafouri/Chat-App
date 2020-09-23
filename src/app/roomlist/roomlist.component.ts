@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 
@@ -9,15 +9,17 @@ import {UserService} from "../Services/user.service";
 })
 export class RoomlistComponent implements OnInit {
   displayname: string;
+  displayuserId: string;
 
-  constructor(private router: Router, private userService:UserService) {
+  constructor(private router: Router, private userService: UserService) {
     this.displayname = userService.username;
+    this.displayuserId = userService.userId;
   }
 
   ngOnInit(): void {
   }
 
-  logout(){
+  logout() {
     this.userService.logout();
     this.router.navigate(['/login']);
 
