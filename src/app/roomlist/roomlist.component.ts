@@ -18,6 +18,9 @@ export class RoomlistComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  addRoom(){
+    this.router.navigate(['/addroom']);
+  }
 
   logout() {
     this.userService.logout();

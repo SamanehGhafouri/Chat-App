@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   username: any;
   userId: any;
+  roomname: any;
 
   constructor() {
     // local storage

@@ -2,6 +2,8 @@
   <h1>Welcome {{displayname}}, {{displayuserId}}</h1>
   <form action="" (ngSubmit)="logout()">
     <button type="submit" class="btn btn-primary">Logout</button>
+    <p>{{displayname}} Please click here to add rooms</p>
+    <button type="button" class="btn btn-primary" (click)="addRoom()">+</button>
   </form>
 
 </div>
