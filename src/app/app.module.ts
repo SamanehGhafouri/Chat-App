@@ -23,6 +23,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
+import {UserService} from "./Services/user.service";
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,7 @@ import {MatIconModule} from "@angular/material/icon";
 
 
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
