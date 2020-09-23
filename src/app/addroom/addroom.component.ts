@@ -11,14 +11,22 @@ import * as firebase from "firebase";
 })
 export class AddroomComponent implements OnInit {
   addRoomForm = new FormGroup({
-    addroom: new FormControl()
+    roomname: new FormControl()
   });
   constructor(private router: Router, private userService:UserService) { }
 
   addRooms(){
-    const rooms = this.addRoomForm.value.addroom;
-    const newRooms = firebase.database().ref('rooms/').push();
-    newRooms.set({name: rooms});
+    const name = this.addRoomForm.value.roomname;
+    if (name != ''){
+
+      this.userService.roomname = name;
+      //Add room in Firebase
+      const newRoom = firebase.database().ref('rooms/').push();
+      newRoom.set({roomname: name, userId: this.userService.userId, username: this.userService.username});
+    }else {
+      console.log("room exist");
+    }
+
     this.router.navigate(['roomlist']);
   }
 

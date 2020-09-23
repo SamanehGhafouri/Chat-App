@@ -27,5 +27,8 @@ export class RoomlistComponent implements OnInit {
     this.router.navigate(['/login']);
 
   }
+  getRoomlist(){
+
+  }
 
 }

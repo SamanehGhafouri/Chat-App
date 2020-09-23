@@ -12,6 +12,7 @@ export class UserService {
     // local storage
     this.username = '';
     this.userId = '';
+    this.roomname = '';
   }
   logout(){
     this.username = '';
