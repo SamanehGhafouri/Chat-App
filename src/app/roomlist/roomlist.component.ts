@@ -21,7 +21,8 @@ export class RoomlistComponent implements OnInit {
 
   ngOnInit(): void {
 
-    firebase.database().ref('rooms').orderByChild('roomname').once('value', (resp: any) => {
+    firebase.database().ref('rooms').orderByChild('roomname').on('value', (resp: any) => {
+      this.displayroomname = [];
 
       // Extract or convert the Firebase response to the array of objects
       resp.forEach((childSnapshot: any) => {
