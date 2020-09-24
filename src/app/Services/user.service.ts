@@ -6,14 +6,14 @@ import { Injectable } from '@angular/core';
 export class UserService {
   username: any;
   userId: any;
-  roomname: any;
+  roomname: any[];
   roomId: any;
 
   constructor() {
     // local storage
     this.username = '';
     this.userId = '';
-    this.roomname = '';
+    this.roomname = [];
     this.roomId = '';
   }
   logout(){
