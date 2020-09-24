@@ -1,27 +1,7 @@
-<!--<div class="container">-->
-<!--  <form class="example-form" [formGroup]="form" (ngSubmit)="onFormSubmit(form.value)">-->
-<!--    <h2>Please login using your name</h2>-->
-<!--    <mat-form-field class="example-full-width">-->
-<!--      <mat-label>Name</mat-label>-->
-<!--      <input matInput placeholder="Enter your name" formControlName="nickname" [errorStateMatcher]="matcher">-->
-<!--      <mat-error>-->
-<!--        <span *ngIf="!form.get('name').valid && form.get('name').touched">-->
-<!--          Please enter your name-->
-<!--        </span>-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
-<!--    <div class="butto-row">-->
-<!--      <button type="submit" [disabled]="!form.valid" mat-fab color="primary">-->
-<!--        <mat-icon>login</mat-icon>-->
-<!--      </button>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--</div>-->
 <div class="container">
   <form [formGroup]="userloginForm" (ngSubmit)="login()">
     <h1>Please login with your name</h1>
     <input type="text" class="form-control" formControlName="username">
     <button type="submit" class="btn btn-primary">Login</button>
   </form>
-
 </div>

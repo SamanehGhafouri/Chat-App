@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'roomlist', component: RoomlistComponent},
   {path: 'addroom', component: AddroomComponent},
-  {path: 'chatroom/:roomname', component: ChatroomComponent},
+  {path: 'chatroom/:roomId', component: ChatroomComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 

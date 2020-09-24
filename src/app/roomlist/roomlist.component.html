@@ -5,7 +5,12 @@
     <p>{{displayname}} Please click here to add rooms</p>
     <button type="button" class="btn btn-primary" (click)="addRoom()">+</button>
       <ul>
-        <li *ngFor="let room of displayroomname">{{room.roomname}}</li>
+        <li *ngFor="let room of displayroomname">
+          <h1>
+            {{room.roomname}}
+            <button [id]=room.roomId class="btn btn-primary" (click)="enterChatroom($event)">Enter the chat room</button>
+          </h1>
+        </li>
       </ul>
   </form>
 

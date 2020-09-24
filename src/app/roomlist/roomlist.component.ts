@@ -31,24 +31,26 @@ export class RoomlistComponent implements OnInit {
         console.log(item);
         this.displayroomname.push(item);
       });
-
     });
   }
+  addRoom() {
 
-
-  addRoom(){
     this.router.navigate(['/addroom']);
-
-
   }
 
+  enterChatroom(event) {
+    //get the room id
+    const target = event.target || event.srcElement || event.currentTarget;
+    console.log("This is the target", target.attributes.id);
+    const roomId = target.attributes.id.nodeValue;
+
+    // every time user enter to room we would be able to see the roomId of that room in URL
+    this.router.navigate(['/chatroom/' + roomId]);
+  }
 
   logout() {
     this.userService.logout();
     this.router.navigate(['/login']);
-
-  }
-  getRoomlist(){
 
   }
 
