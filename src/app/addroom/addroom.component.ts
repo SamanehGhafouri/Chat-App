@@ -36,6 +36,7 @@ export class AddroomComponent implements OnInit {
             username: this.userService.username,
             roomId: roomKey
           });
+
         } else {
           // we assume that there is only one object since the query has a limit to 1
           // TODO: we can and should enforce this assumed unique username as a Firebase/Database rule.

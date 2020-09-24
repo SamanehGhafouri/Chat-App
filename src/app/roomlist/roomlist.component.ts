@@ -12,11 +12,13 @@ export class RoomlistComponent implements OnInit {
   displayname: string;
   displayuserId: string;
   displayroomname: any[];
+  displayroomId: any;
 
   constructor(private router: Router, private userService: UserService) {
     this.displayname = userService.username;
     this.displayuserId = userService.userId;
     this.displayroomname = [];
+    this.displayroomId = userService.roomId;
   }
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class RoomlistComponent implements OnInit {
     const target = event.target || event.srcElement || event.currentTarget;
     console.log("This is the target", target.attributes.id);
     const roomId = target.attributes.id.nodeValue;
+    this.userService.roomId = roomId;
 
     // every time user enter to room we would be able to see the roomId of that room in URL
     this.router.navigate(['/chatroom/' + roomId]);

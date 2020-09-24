@@ -1,1 +1,8 @@
-<p>chatroom works!</p>
+<div class="container">
+  <button class="btn btn-primary" (click)="logout()">Logout</button>
+  <form [formGroup]="chatForm" (ngSubmit)="chats()">
+    <input type="text" class="form-control" placeholder="Enter your message" formControlName="inputMessage">
+    <button type="submit" class="btn btn-primary">Send</button>
+
+  </form>
+</div>
