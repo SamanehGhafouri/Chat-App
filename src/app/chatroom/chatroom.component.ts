@@ -52,6 +52,7 @@ export class ChatroomComponent implements OnInit {
 
 
   ngOnInit() {
+    //getting chats by roomIds
     firebase.database().ref('chats').orderByChild('roomId')
       .equalTo(this.roomId).on('value', (resp: any) => {
       this.displayChats = [];
@@ -61,8 +62,9 @@ export class ChatroomComponent implements OnInit {
         const chat = childSnapshot.val();
         chat['displayDate'] = new Date(chat.timestamp).toLocaleString();
         this.displayChats.push(chat);
-
       });
+      //sort chat by timestamp
+      this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
     });
   }
