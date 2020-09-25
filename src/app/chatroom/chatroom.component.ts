@@ -11,6 +11,11 @@ import * as firebase from "firebase";
 })
 export class ChatroomComponent implements OnInit {
   roomId: string;
+  displayAuthor: any;
+  displayMessage: any[];
+  messageTime: [];
+  displayChats: any[];
+
 
   chatForm = new FormGroup({
     inputMessage: new FormControl()
@@ -20,6 +25,10 @@ export class ChatroomComponent implements OnInit {
     //route.params is an observable.
     //we can extract the value of the param into a hard value by .subscribe
     route.params.subscribe(params => {this.roomId = params['roomId']; });
+
+    //Display authors
+    this.displayAuthor = userService.username;
+
   }
 
   chats(){
@@ -33,15 +42,34 @@ export class ChatroomComponent implements OnInit {
     });
   }
 
-  getMessages(){
-
-  }
-
   logout(){
     this.router.navigate(['/login']);
   }
 
   ngOnInit() {
+
+    firebase.database().ref('chats').on('value', (resp: any) => {
+      this.displayChats = [];
+
+      // Extract or convert the Firebase response to the array of objects
+      resp.forEach((childSnapshot: any) => {
+        const item = childSnapshot.val();
+        this.displayChats.push(item);
+      });
+    });
+    console.log('What is in the chats?', this.displayChats);
+
+    // firebase.database().ref('chats').orderByChild('author').on('value', (resp: any) => {
+    //   this.displayAuthor = [];
+    //
+    //   // Extract or convert the Firebase response to the array of objects
+    //   resp.forEach((childSnapshot: any) => {
+    //     const item = childSnapshot.val();
+    //     this.displayAuthor.push(item);
+    //   });
+    // });
+
+
 
   }
 
