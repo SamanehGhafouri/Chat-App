@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
@@ -32,13 +32,13 @@ export class ChatroomComponent implements OnInit {
   }
 
   chats(){
-
+    console.log("what is date?", new Date().getTime());
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
       author: this.userService.username,
       roomId: this.roomId,
       message: this.chatForm.value.inputMessage,
-      timestamp: ''
+      timestamp: new Date().getTime()
     });
   }
 
@@ -46,31 +46,24 @@ export class ChatroomComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  ngOnInit() {
 
+  ngOnInit() {
     firebase.database().ref('chats').on('value', (resp: any) => {
       this.displayChats = [];
 
       // Extract or convert the Firebase response to the array of objects
       resp.forEach((childSnapshot: any) => {
-        const item = childSnapshot.val();
-        this.displayChats.push(item);
+        const chat = childSnapshot.val();
+        if (chat.roomId == this.roomId){
+          chat['displayDate'] = new Date(chat.timestamp).toLocaleString();
+          this.displayChats.push(chat);
+        }
+
       });
+
     });
-    console.log('What is in the chats?', this.displayChats);
-
-    // firebase.database().ref('chats').orderByChild('author').on('value', (resp: any) => {
-    //   this.displayAuthor = [];
-    //
-    //   // Extract or convert the Firebase response to the array of objects
-    //   resp.forEach((childSnapshot: any) => {
-    //     const item = childSnapshot.val();
-    //     this.displayAuthor.push(item);
-    //   });
-    // });
-
-
-
   }
 
+
 }
+
