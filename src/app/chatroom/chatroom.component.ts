@@ -32,7 +32,6 @@ export class ChatroomComponent implements OnInit {
   }
 
   chats(){
-    console.log("what is date?", new Date().getTime());
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
       author: this.userService.username,
@@ -40,6 +39,9 @@ export class ChatroomComponent implements OnInit {
       message: this.chatForm.value.inputMessage,
       timestamp: new Date().getTime()
     });
+
+    //Empty the input field after send
+    this.chatForm.controls['inputMessage'].setValue('');
   }
 
   logout(){
