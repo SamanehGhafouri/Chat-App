@@ -21,17 +21,19 @@ export class ChatroomComponent implements OnInit {
     inputMessage: new FormControl()
   });
 
-  constructor(private router: Router, private userService:UserService, private route: ActivatedRoute) {
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
     //route.params is an observable.
     //we can extract the value of the param into a hard value by .subscribe
-    route.params.subscribe(params => {this.roomId = params['roomId']; });
+    route.params.subscribe(params => {
+      this.roomId = params['roomId'];
+    });
 
     //Display authors
     this.displayAuthor = userService.username;
 
   }
 
-  chats(){
+  chats() {
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
       author: this.userService.username,
@@ -44,22 +46,21 @@ export class ChatroomComponent implements OnInit {
     this.chatForm.controls['inputMessage'].setValue('');
   }
 
-  logout(){
+  logout() {
     this.router.navigate(['/login']);
   }
 
 
   ngOnInit() {
-    firebase.database().ref('chats').on('value', (resp: any) => {
+    firebase.database().ref('chats').orderByChild('roomId')
+      .equalTo(this.roomId).on('value', (resp: any) => {
       this.displayChats = [];
 
       // Extract or convert the Firebase response to the array of objects
       resp.forEach((childSnapshot: any) => {
         const chat = childSnapshot.val();
-        if (chat.roomId == this.roomId){
-          chat['displayDate'] = new Date(chat.timestamp).toLocaleString();
-          this.displayChats.push(chat);
-        }
+        chat['displayDate'] = new Date(chat.timestamp).toLocaleString();
+        this.displayChats.push(chat);
 
       });
 
