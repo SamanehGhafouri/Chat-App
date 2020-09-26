@@ -16,29 +16,43 @@
     </mat-drawer>
 
 
-    <div class="chat-content">
+    <mat-drawer-content class="chat-pane">
+      <!--      <div #chatcontent [scrollTop]="scrolltop" class="chat-content">-->
+
       <div class="message-box" *ngFor="let chat of displayChats">
-        <span>{{chat.author}}</span>
-        <span class="chat-content-center">{{chat.message}}, {{chat.displayDate}}</span>
-        <!--        <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';">-->
+        <div class="chat-status" text-center *ngIf="chat.type === 'join' || chat.type === 'exit'; else message">
+          <!--          <span class="chat-date">{{chat.date | date:'short'}}</span>-->
+          <span class="chat-content-center">{{chat.message}}</span>
+        </div>
 
         <ng-template #message>
           <div class="chat-message">
-            <!--              <div class="right-bubble"-->
-            <!--                   [ngClass]="{'right-bubble': chat.author === displayAuthor, 'left-bubble': chat.author !== displayAuthor}">-->
-            <!--                <span class="msg-name" *ngIf="chat.author === displayAuthor">Me</span>-->
-            <!--                <span class="msg-name" *ngIf="chat.author !== displayAuthor">{{chat.author}}</span>-->
-            <!--              <span class="msg-date"> at {{chat.date | date:'short'}}</span>-->
-            <!--                <p text-wrap>{{chat.message}}</p>-->
+            <div class="right-bubble"
+                 [ngClass]="{'right-bubble': chat.author == curentUsername, 'left-bubble': chat.author != curentUsername}">
+              <span class="msg-name" *ngIf="chat.author === displayAuthors">Me</span>
+              <span class="msg-name" *ngIf="chat.author !== displayAuthors">{{chat.author}}</span>
+              <span class="msg-date"> at {{chat.displayDate}}</span>
+              <p text-wrap>{{chat.message}}</p>
+            </div>
           </div>
         </ng-template>
+
+
+<!--        <span>{{chat.author}}</span>-->
+<!--        <span class="chat-content-center">{{chat.message}}, {{chat.displayDate}}</span>-->
+        <!--        <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';">-->
+
+
       </div>
-    </div>
-    <footer>
-      <form [formGroup]="chatForm" (ngSubmit)="chats()">
-        <input type="text" class="form-control" placeholder="Enter your message" formControlName="inputMessage">
-        <button type="submit" class="btn btn-primary">Send</button>
-      </form>
-    </footer>
+
+      <!--      </div>-->
+      <footer>
+        <form [formGroup]="chatForm" (ngSubmit)="chats()">
+          <input type="text" class="form-control" placeholder="Enter your message" formControlName="inputMessage">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+
+      </footer>
+    </mat-drawer-content>
   </mat-drawer-container>
 </div>

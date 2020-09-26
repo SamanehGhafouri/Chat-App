@@ -15,6 +15,7 @@ export class ChatroomComponent implements OnInit {
   displayMessage: any[];
   messageTime: [];
   displayChats: any[];
+  curentUsername: any;
 
 
   chatForm = new FormGroup({
@@ -30,6 +31,9 @@ export class ChatroomComponent implements OnInit {
 
     //Display authors by creating a set
     this.displayAuthors = new Set();
+
+    //Current username
+    this.curentUsername = this.userService.username;
 
   }
 
@@ -66,7 +70,6 @@ export class ChatroomComponent implements OnInit {
         //Display authors who are using a specific room
         this.displayAuthors.add(chat.author);
       });
-      console.log("who are authors", this.displayAuthors);
       //sort chat by timestamp
       this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
