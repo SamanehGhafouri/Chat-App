@@ -1,8 +1,18 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, FormGroupDirective, NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 import * as firebase from "firebase";
+import {ErrorStateMatcher} from "@angular/material/core";
+
+
+//Validator
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-chatroom',
@@ -19,6 +29,8 @@ export class ChatroomComponent implements OnInit {
   //scroll top
   @ViewChild('chatcontent') chatcontent: ElementRef;
   scrolltop: number = null;
+  //error matcher
+  matcher = new MyErrorStateMatcher();
 
 
   chatForm = new FormGroup({
