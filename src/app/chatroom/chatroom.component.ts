@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
@@ -16,6 +16,9 @@ export class ChatroomComponent implements OnInit {
   messageTime: [];
   displayChats: any[];
   curentUsername: any;
+  //scroll top
+  @ViewChild('chatcontent') chatcontent: ElementRef;
+  scrolltop: number = null;
 
 
   chatForm = new FormGroup({
