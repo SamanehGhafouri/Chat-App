@@ -1,21 +1,19 @@
 <div class="container">
 
   <mat-drawer-container class="drawer-container">
-    <button class="btn btn-primary" (click)="logout()">Logout</button>
-
-    <!--    <mat-drawer mode="side" opened class="left-drawer">-->
-    <!--      <div class="users-pane">-->
-    <!--        <mat-card class="users-card">-->
-    <!--          <button type="button" class="btn btn-primary" (click)="logout()">-->
-    <!--            <mat-icon>logout</mat-icon>-->
-    <!--          </button>-->
-    <!--        </mat-card>-->
-    <!--        <mat-card class="users-card" *ngFor="let author of displayAuthor">-->
-    <!--          <mat-icon>person</mat-icon>-->
-    <!--          <span class="username">{{author.value}}</span>-->
-    <!--        </mat-card>-->
-    <!--      </div>-->
-    <!--    </mat-drawer>-->
+    <mat-drawer mode="side" opened class="left-drawer">
+      <div class="users-pane">
+        <mat-card class="users-card">
+          <button class="btn btn-primary" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+          </button>
+        </mat-card>
+        <mat-card class="users-card" *ngFor="let author of displayAuthors">
+          <mat-icon>person</mat-icon>
+          <span class="username">{{author}}</span>
+        </mat-card>
+      </div>
+    </mat-drawer>
 
 
     <div class="chat-content">
@@ -35,16 +33,12 @@
           </div>
         </ng-template>
       </div>
-
     </div>
     <footer>
       <form [formGroup]="chatForm" (ngSubmit)="chats()">
         <input type="text" class="form-control" placeholder="Enter your message" formControlName="inputMessage">
         <button type="submit" class="btn btn-primary">Send</button>
-
-
       </form>
     </footer>
-
   </mat-drawer-container>
 </div>

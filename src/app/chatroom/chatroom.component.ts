@@ -11,7 +11,7 @@ import * as firebase from "firebase";
 })
 export class ChatroomComponent implements OnInit {
   roomId: string;
-  displayAuthor: any;
+  displayAuthors: Set<any>;
   displayMessage: any[];
   messageTime: [];
   displayChats: any[];
@@ -28,8 +28,8 @@ export class ChatroomComponent implements OnInit {
       this.roomId = params['roomId'];
     });
 
-    //Display authors
-    this.displayAuthor = userService.username;
+    //Display authors by creating a set
+    this.displayAuthors = new Set();
 
   }
 
@@ -62,13 +62,15 @@ export class ChatroomComponent implements OnInit {
         const chat = childSnapshot.val();
         chat['displayDate'] = new Date(chat.timestamp).toLocaleString();
         this.displayChats.push(chat);
+
+        //Display authors who are using a specific room
+        this.displayAuthors.add(chat.author);
       });
+      console.log("who are authors", this.displayAuthors);
       //sort chat by timestamp
       this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
     });
   }
-
-
 }
 

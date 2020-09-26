@@ -172,3 +172,6 @@ footer.sticky-footer {
   height: 600px;
 }
 
+.mat-card {
+  background: orange;
+}
