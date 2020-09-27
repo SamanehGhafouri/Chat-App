@@ -179,7 +179,7 @@ footer.sticky-footer {
   background: #ffcb8e;
 }
 .mat-form-field{
-  background-color: #EEE9E5;
+  /*background-color: #EEE9E5;*/
   border-radius: 10px;
   width: 80%;
 }
@@ -193,19 +193,27 @@ p{
 button{
   margin-right: 20px;
 }
-.ng-tns-c92-1 .ng-star-inserted{
-  color: grey;
-  padding-left: 20px;
-}
+/*.ng-tns-c92-1 .ng-star-inserted{*/
+/*  color: grey;*/
+/*  padding-left: 20px;*/
+/*}*/
 
 .mat-input-element{
   color: black;
 }
-.mat-focused .placeholder{
-  color:#c2185b;
-}
+/*.mat-focused .placeholder{*/
+/*  color:#c2185b;*/
+/*}*/
 .btn{
   color: #625261;
   background: #ffcb8e ;
   border-color: #ffcb8e;
 }
+input{
+  width: 500px;
+  height: 35px;
+  padding-top: 9px;
+  margin-top: 10px;
+}
+
+

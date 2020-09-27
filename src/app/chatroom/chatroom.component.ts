@@ -3,16 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 import * as firebase from "firebase";
-import {ErrorStateMatcher} from "@angular/material/core";
 
-
-//Validator
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-chatroom',
@@ -26,18 +17,18 @@ export class ChatroomComponent implements OnInit {
   messageTime: [];
   displayChats: any[];
   curentUsername: any;
+
   //scroll top
   @ViewChild('chatcontent') chatcontent: ElementRef;
   scrolltop: number = null;
-  //error matcher
-  matcher = new MyErrorStateMatcher();
+
 
 
   chatForm = new FormGroup({
     inputMessage: new FormControl()
   });
 
-  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute, private formBuilder:FormBuilder) {
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
     //route.params is an observable.
     //we can extract the value of the param into a hard value by .subscribe
     route.params.subscribe(params => {
@@ -63,11 +54,6 @@ export class ChatroomComponent implements OnInit {
 
     //Empty the input field after send
     this.chatForm.controls['inputMessage'].setValue('');
-
-    //validator
-    // this.chatForm = this.formBuilder.group({
-    //   'inputMessage': [null, Validators.required]
-    // });
   }
 
   logout() {
@@ -95,10 +81,6 @@ export class ChatroomComponent implements OnInit {
 
     });
 
-    //validator
-    this.chatForm = this.formBuilder.group({
-      'inputMessage': [null, Validators.required]
-    });
   }
 
 }

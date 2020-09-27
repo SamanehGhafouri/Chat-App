@@ -48,18 +48,15 @@
       </div>
 
       <footer class="sticky-footer">
-        <form class="message-form" [formGroup]="chatForm" >
-<!--          <form class="message-form" [formGroup]="chatForm" (ngSubmit)="chats()">-->
-          <mat-form-field>
-            <input matInput formControlName="inputMessage" [errorStateMatcher]="matcher">
-            <mat-placeholder class="placeholder">Enter your message</mat-placeholder>
-            <mat-error>
-              <span *ngIf="!chatForm.get('inputMessage').valid && chatForm.get('inputMessage').touched">Enter your message</span>
-            </mat-error>
-            <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="Send" (click)="chats()">
+
+        <form class="message-form" [formGroup]="chatForm" (ngSubmit)="chats()">
+<!--          <mat-form>-->
+            <input formControlName="inputMessage" placeholder="Enter your message">
+            <button type="submit">
               <mat-icon>send</mat-icon>
+
             </button>
-          </mat-form-field>
+<!--          </mat-form>-->
         </form>
       </footer>
     </mat-drawer-content>
