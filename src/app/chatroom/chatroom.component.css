@@ -178,19 +178,27 @@ footer.sticky-footer {
 }
 .mat-form-field{
   background-color: #EEE9E5;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 80%;
 }
-input{
-  background-color: #EEE9E5;
-}
 
-::placeholder{
-  color: #222222;
-}
 p{
   color: #222222;
 }
 .msg-date{
   color: black;
+}
+button{
+  margin-right: 20px;
+}
+.ng-tns-c92-1 .ng-star-inserted{
+  color: grey;
+  padding-left: 20px;
+}
+
+.mat-input-element{
+  color: black;
+}
+.mat-focused .placeholder{
+  color:#c2185b;
 }

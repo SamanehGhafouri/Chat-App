@@ -49,8 +49,9 @@
       <footer class="sticky-footer">
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="chats()">
           <mat-form-field>
-            <input matInput class="form-control" placeholder="Enter your message" formControlName="inputMessage"
+            <input matInput formControlName="inputMessage"
                    [errorStateMatcher]="matcher">
+            <mat-placeholder class="placeholder">Enter your message</mat-placeholder>
             <mat-error>
               <span *ngIf="!chatForm.get('inputMessage').valid && chatForm.get('inputMessage').touched">Enter your message</span>
             </mat-error>
