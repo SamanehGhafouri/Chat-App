@@ -43,8 +43,9 @@ footer.sticky-footer {
   left: 0;
   width: 100%;
   padding: 10px;
-  background-color: #ffffff;
-  border-top: solid 1px #efefef;
+  background-color: #B8B1C1;
+  border-top: solid 1px #EEE9E5;
+
 }
 
 .message-form {
@@ -115,7 +116,7 @@ footer.sticky-footer {
 .chat-message .left-bubble span.msg-name {
   font-size: 12px;
   font-weight: bold;
-  color: blue;
+  color: darkblue;
 }
 
 .chat-message .left-bubble span.msg-date {
@@ -174,4 +175,22 @@ footer.sticky-footer {
 
 .mat-card {
   background: orange;
+}
+.mat-form-field{
+  background-color: #EEE9E5;
+  border-radius: 20px;
+  width: 80%;
+}
+input{
+  background-color: #EEE9E5;
+}
+
+::placeholder{
+  color: #222222;
+}
+p{
+  color: #222222;
+}
+.msg-date{
+  color: black;
 }

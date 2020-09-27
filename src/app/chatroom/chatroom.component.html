@@ -29,7 +29,7 @@
             <div class="chat-message">
               <div class="right-bubble"
                    [ngClass]="{'right-bubble': chat.author == curentUsername, 'left-bubble': chat.author != curentUsername}">
-                <span class="msg-name" *ngIf="chat.author === displayAuthors">Me</span>
+                <span class="msg-name" *ngIf="chat.author === curentUsername">Me</span>
                 <span class="msg-name" *ngIf="chat.author !== displayAuthors">{{chat.author}}</span>
                 <span class="msg-date"> at {{chat.displayDate}}</span>
                 <p text-wrap>{{chat.message}}</p>
@@ -40,7 +40,6 @@
 
           <!--        <span>{{chat.author}}</span>-->
           <!--        <span class="chat-content-center">{{chat.message}}, {{chat.displayDate}}</span>-->
-          <!--        <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';">-->
 
 
         </div>
@@ -50,17 +49,17 @@
       <footer class="sticky-footer">
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="chats()">
           <mat-form-field>
-            <input matInput class="form-control" placeholder="Enter your message" formControlName="inputMessage" [errorStateMatcher]="matcher">
+            <input matInput class="form-control" placeholder="Enter your message" formControlName="inputMessage"
+                   [errorStateMatcher]="matcher">
             <mat-error>
               <span *ngIf="!chatForm.get('inputMessage').valid && chatForm.get('inputMessage').touched">Enter your message</span>
             </mat-error>
-          <button type="submit" class="btn btn-primary">Send</button>
+            <button type="submit" [disabled]="!chatForm.valid" mat-button matSuffix mat-icon-button aria-label="Send">
+              <mat-icon>send</mat-icon>
+            </button>
           </mat-form-field>
         </form>
-
       </footer>
-
-
     </mat-drawer-content>
   </mat-drawer-container>
 </div>
