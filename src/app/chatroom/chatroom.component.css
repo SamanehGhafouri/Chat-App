@@ -28,6 +28,7 @@
 
 .users-card {
   margin: 5px 20px;
+  color: #625261;
 
 }
 
@@ -174,7 +175,8 @@ footer.sticky-footer {
 }
 
 .mat-card {
-  background: orange;
+  /*background: #ffeadb;*/
+  background: #ffcb8e;
 }
 .mat-form-field{
   background-color: #EEE9E5;
@@ -201,4 +203,9 @@ button{
 }
 .mat-focused .placeholder{
   color:#c2185b;
+}
+.btn{
+  color: #625261;
+  background: #ffcb8e ;
+  border-color: #ffcb8e;
 }
