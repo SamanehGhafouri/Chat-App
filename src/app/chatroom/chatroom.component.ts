@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, FormGroupDirective, NgForm} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 import * as firebase from "firebase";
@@ -37,7 +37,7 @@ export class ChatroomComponent implements OnInit {
     inputMessage: new FormControl()
   });
 
-  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
+  constructor(private router: Router, private userService: UserService, private route: ActivatedRoute, private formBuilder:FormBuilder) {
     //route.params is an observable.
     //we can extract the value of the param into a hard value by .subscribe
     route.params.subscribe(params => {
@@ -63,6 +63,11 @@ export class ChatroomComponent implements OnInit {
 
     //Empty the input field after send
     this.chatForm.controls['inputMessage'].setValue('');
+
+    //validator
+    // this.chatForm = this.formBuilder.group({
+    //   'inputMessage': [null, Validators.required]
+    // });
   }
 
   logout() {
@@ -86,9 +91,15 @@ export class ChatroomComponent implements OnInit {
         this.displayAuthors.add(chat.author);
       });
       //sort chat by timestamp
-      this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
+      this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp ? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
     });
+
+    //validator
+    this.chatForm = this.formBuilder.group({
+      'inputMessage': [null, Validators.required]
+    });
   }
+
 }
 
