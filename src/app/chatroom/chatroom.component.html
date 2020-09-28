@@ -52,7 +52,7 @@
 <!--          <mat-form>-->
           <div *ngIf="chatForm.errors">Input is invalid</div>
 
-            <input formControlName="chatmsg" placeholder="Enter your message" required="">
+            <input formControlName="chatmsg" placeholder="Enter your message" required>
           <div *ngIf="chatmsg.invalid"
                class="mat-error">Enter message please</div>
             <button type="submit" mat-button [disabled]="!chatForm.valid" mat-icon-button>

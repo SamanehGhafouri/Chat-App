@@ -104,7 +104,7 @@ export class ChatroomComponent implements OnInit, AfterViewInit{
 
   //Scroll to the last chat in chatroom shown by this function
   ngAfterViewInit(){
-    console.log("##### new func ######");
+    console.log("##### new func ######", this.roomId);
     this.scrollContainerToBottom();
   }
   scrollContainerToBottom(){
