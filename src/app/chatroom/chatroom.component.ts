@@ -1,11 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
-  FormGroupDirective,
-  NgForm,
   Validators
 } from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -18,20 +14,17 @@ import * as firebase from "firebase";
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements OnInit, AfterViewInit{
+export class ChatroomComponent implements OnInit, AfterViewChecked {
   roomId: string;
   displayAuthors: Set<any>;
-  displayMessage: any[];
-  messageTime: [];
   displayChats: any[];
   curentUsername: any;
-  sku: AbstractControl;
 
   //scroll top
-  @ViewChild('chatcontent') chatcontent: ElementRef;
-  scrolltop: number = null;
+  @ViewChild('chatcontent') private chatcontent: ElementRef;
 
   chatForm: FormGroup;
+
 
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
     //route.params is an observable.
@@ -45,14 +38,10 @@ export class ChatroomComponent implements OnInit, AfterViewInit{
 
     //Current username
     this.curentUsername = this.userService.username;
-
-
-
   }
 
-  chats() {
-
-    if (this.chatForm.invalid) { return }
+  submitChats() {
+    if (this.chatForm.invalid) {return}
 
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
@@ -64,18 +53,13 @@ export class ChatroomComponent implements OnInit, AfterViewInit{
 
     //Empty the input field after send
     this.chatForm.controls['chatmsg'].setValue('');
-
-    //validation
-
   }
 
   logout() {
     this.router.navigate(['/login']);
   }
 
-
   ngOnInit() {
-
     //getting chats by roomIds
     firebase.database().ref('chats').orderByChild('roomId')
       .equalTo(this.roomId).on('value', (resp: any) => {
@@ -98,18 +82,27 @@ export class ChatroomComponent implements OnInit, AfterViewInit{
     this.chatForm = new FormGroup({
       chatmsg: new FormControl("", [Validators.required, Validators.minLength(1)])
     });
-  }
-  //get validator
-  get chatmsg() { return this.chatForm.get('chatmsg'); }
 
-  //Scroll to the last chat in chatroom shown by this function
-  ngAfterViewInit(){
-    console.log("##### new func ######", this.roomId);
-    this.scrollContainerToBottom();
+    //scroll
+    this.scrollToBottom();
+
   }
-  scrollContainerToBottom(){
-    const container = document.getElementById('chatcontainer');
-    container.scrollTop = container.scrollHeight;
+
+  //get validator
+  get chatmsg() {
+    return this.chatForm.get('chatmsg');
+  }
+
+  // Scroll to the bottom
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.chatcontent.nativeElement.scrollTop = this.chatcontent.nativeElement.scrollHeight;
+    } catch (err) {
+    }
   }
 
 }
