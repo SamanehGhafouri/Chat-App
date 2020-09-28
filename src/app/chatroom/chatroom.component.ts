@@ -1,5 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  Validators
+} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 import * as firebase from "firebase";
@@ -17,16 +25,13 @@ export class ChatroomComponent implements OnInit {
   messageTime: [];
   displayChats: any[];
   curentUsername: any;
+  sku: AbstractControl;
 
   //scroll top
   @ViewChild('chatcontent') chatcontent: ElementRef;
   scrolltop: number = null;
 
-
-
-  chatForm = new FormGroup({
-    inputMessage: new FormControl()
-  });
+  chatForm: FormGroup;
 
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
     //route.params is an observable.
@@ -41,19 +46,27 @@ export class ChatroomComponent implements OnInit {
     //Current username
     this.curentUsername = this.userService.username;
 
+
+
   }
 
   chats() {
+
+    if (this.chatForm.invalid) { return }
+
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
       author: this.userService.username,
       roomId: this.roomId,
-      message: this.chatForm.value.inputMessage,
+      message: this.chatForm.value.chatmsg,
       timestamp: new Date().getTime()
     });
 
     //Empty the input field after send
-    this.chatForm.controls['inputMessage'].setValue('');
+    this.chatForm.controls['chatmsg'].setValue('');
+
+    //validation
+
   }
 
   logout() {
@@ -62,6 +75,7 @@ export class ChatroomComponent implements OnInit {
 
 
   ngOnInit() {
+
     //getting chats by roomIds
     firebase.database().ref('chats').orderByChild('roomId')
       .equalTo(this.roomId).on('value', (resp: any) => {
@@ -80,8 +94,13 @@ export class ChatroomComponent implements OnInit {
       this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp ? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
     });
-
+    //validators
+    this.chatForm = new FormGroup({
+      chatmsg: new FormControl("", [Validators.required, Validators.minLength(1)])
+    });
   }
+  //get validator
+  get chatmsg() { return this.chatForm.get('chatmsg'); }
 
 }
 

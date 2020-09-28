@@ -51,13 +51,33 @@
 
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="chats()">
 <!--          <mat-form>-->
-            <input formControlName="inputMessage" placeholder="Enter your message">
+          <div *ngIf="chatForm.errors">Input is invalid</div>
+
+            <input formControlName="chatmsg" placeholder="Enter your message" >
+          <div *ngIf="chatmsg.invalid"
+               class="alert alert-danger">input must be at least 1 character</div>
             <button type="submit">
               <mat-icon>send</mat-icon>
 
             </button>
 <!--          </mat-form>-->
         </form>
+
+<!--        <form class="message-form" [formGroup]="messageForm" (ngSubmit)="chats()">-->
+
+<!--          <input id="chatmsg" class="form-control" formControlName="chatmsg" required >-->
+
+<!--          <div *ngIf="chatmsg.invalid && (chatmsg.dirty || chatmsg.touched)"-->
+<!--                 class="alert alert-danger">-->
+
+<!--              <div *ngIf="chatmsg.errors.required">-->
+<!--                Name is required.-->
+<!--              </div>-->
+<!--              <div *ngIf="chatmsg.errors.minlength">-->
+<!--                Name must be at least 4 characters long.-->
+<!--              </div>-->
+<!--          </div>-->
+<!--        </form>-->
       </footer>
     </mat-drawer-content>
   </mat-drawer-container>
