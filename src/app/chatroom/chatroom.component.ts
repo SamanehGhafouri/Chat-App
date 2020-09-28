@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -18,7 +18,7 @@ import * as firebase from "firebase";
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements OnInit {
+export class ChatroomComponent implements OnInit, AfterViewInit{
   roomId: string;
   displayAuthors: Set<any>;
   displayMessage: any[];
@@ -101,6 +101,16 @@ export class ChatroomComponent implements OnInit {
   }
   //get validator
   get chatmsg() { return this.chatForm.get('chatmsg'); }
+
+  //Scroll to the last chat in chatroom shown by this function
+  ngAfterViewInit(){
+    console.log("##### new func ######");
+    this.scrollContainerToBottom();
+  }
+  scrollContainerToBottom(){
+    const container = document.getElementById('chatcontainer');
+    container.scrollTop = container.scrollHeight;
+  }
 
 }
 

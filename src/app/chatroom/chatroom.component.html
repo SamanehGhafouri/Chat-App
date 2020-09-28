@@ -1,5 +1,4 @@
 <div class="container">
-
   <mat-drawer-container class="drawer-container">
     <mat-drawer mode="side" opened class="left-drawer">
       <div class="users-pane">
@@ -18,7 +17,7 @@
 
 
     <mat-drawer-content class="chat-pane">
-      <div #chatcontent [scrollTop]="scrolltop" class="chat-content">
+      <div id="chatcontainer" #chatcontent [scrollTop]="scrolltop" class="chat-content">
 
         <div class="message-box" *ngFor="let chat of displayChats">
           <div class="chat-status" text-center *ngIf="chat.type === 'join' || chat.type === 'exit'; else message">
@@ -53,12 +52,11 @@
 <!--          <mat-form>-->
           <div *ngIf="chatForm.errors">Input is invalid</div>
 
-            <input formControlName="chatmsg" placeholder="Enter your message" >
+            <input formControlName="chatmsg" placeholder="Enter your message" required="">
           <div *ngIf="chatmsg.invalid"
-               class="alert alert-danger">input must be at least 1 character</div>
-            <button type="submit">
+               class="mat-error">Enter message please</div>
+            <button type="submit" mat-button [disabled]="!chatForm.valid" mat-icon-button>
               <mat-icon>send</mat-icon>
-
             </button>
 <!--          </mat-form>-->
         </form>
