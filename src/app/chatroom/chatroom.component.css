@@ -1,6 +1,6 @@
-.container{
+.container {
   padding-top: 20px;
-  background-color:  #B8B1C1;
+  background-color: #B8B1C1;
 }
 
 .example-container {
@@ -8,6 +8,7 @@
   padding: 10px;
 
 }
+
 .drawer-container {
   position: absolute;
   right: 0;
@@ -51,6 +52,7 @@ footer.sticky-footer {
 
 .message-form {
   margin-left: 200px;
+  position: relative;
 }
 
 .message-form-field {
@@ -165,7 +167,7 @@ footer.sticky-footer {
   right: 10%;
 }
 
-.chat-content-center{
+.chat-content-center {
   color: #222222;
 }
 
@@ -175,41 +177,37 @@ footer.sticky-footer {
 }
 
 .mat-card {
-  /*background: #ffeadb;*/
   background: #ffcb8e;
 }
-.mat-form-field{
-  /*background-color: #EEE9E5;*/
+
+.mat-form-field {
   border-radius: 10px;
   width: 80%;
 }
 
-p{
+p {
   color: #222222;
 }
-.msg-date{
+
+.msg-date {
   color: black;
 }
-button{
+
+button {
   margin-right: 20px;
 }
-/*.ng-tns-c92-1 .ng-star-inserted{*/
-/*  color: grey;*/
-/*  padding-left: 20px;*/
-/*}*/
 
-.mat-input-element{
+.mat-input-element {
   color: black;
 }
-/*.mat-focused .placeholder{*/
-/*  color:#c2185b;*/
-/*}*/
-.btn{
+
+.btn {
   color: #625261;
-  background: #ffcb8e ;
+  background: #ffcb8e;
   border-color: #ffcb8e;
 }
-input{
+
+input {
   width: 500px;
   height: 35px;
   padding-top: 9px;

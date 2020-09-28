@@ -1,4 +1,3 @@
-<!--<div class="container">-->
 <div class="example-container mat-elevation-z8">
   <mat-drawer-container class="drawer-container">
     <mat-drawer mode="side" opened class="left-drawer">
@@ -15,17 +14,12 @@
         </mat-card>
       </div>
     </mat-drawer>
-
-
     <mat-drawer-content class="chat-pane">
       <div id="chatcontainer" #chatcontent class="chat-content">
-
         <div class="message-box" *ngFor="let chat of displayChats">
           <div class="chat-status" text-center *ngIf="chat.type === 'join' || chat.type === 'exit'; else message">
-            <!--          <span class="chat-date">{{chat.date | date:'short'}}</span>-->
             <span class="chat-content-center">{{chat.message}}</span>
           </div>
-
           <ng-template #message>
             <div class="chat-message">
               <div class="right-bubble"
@@ -37,50 +31,18 @@
               </div>
             </div>
           </ng-template>
-
-
-          <!--        <span>{{chat.author}}</span>-->
-          <!--        <span class="chat-content-center">{{chat.message}}, {{chat.displayDate}}</span>-->
-
-
         </div>
-        <!--scroll closing-->
       </div>
-
-
       <footer class="sticky-footer">
-
         <form class="message-form" [formGroup]="chatForm" (ngSubmit)="submitChats()">
-<!--          <mat-form>-->
-<!--          <div *ngIf="chatForm.errors">Input is invalid</div>-->
           <div *ngIf="chatmsg.invalid && chatmsg.touched" class="mat-error">Enter message please</div>
-
-            <span><input formControlName="chatmsg" placeholder="Enter your message" required></span>
-
-            <span><button type="submit" mat-button [disabled]="!chatForm.valid" mat-icon-button>
+          <span><input formControlName="chatmsg" placeholder="Enter your message" required></span>
+          <span><button type="submit" mat-button [disabled]="!chatForm.valid" mat-icon-button>
               <mat-icon>send</mat-icon>
             </button>
             </span>
-<!--          </mat-form>-->
         </form>
-
-<!--        <form class="message-form" [formGroup]="messageForm" (ngSubmit)="chats()">-->
-
-<!--          <input id="chatmsg" class="form-control" formControlName="chatmsg" required >-->
-
-<!--          <div *ngIf="chatmsg.invalid && (chatmsg.dirty || chatmsg.touched)"-->
-<!--                 class="alert alert-danger">-->
-
-<!--              <div *ngIf="chatmsg.errors.required">-->
-<!--                Name is required.-->
-<!--              </div>-->
-<!--              <div *ngIf="chatmsg.errors.minlength">-->
-<!--                Name must be at least 4 characters long.-->
-<!--              </div>-->
-<!--          </div>-->
-<!--        </form>-->
       </footer>
-
     </mat-drawer-content>
   </mat-drawer-container>
 </div>
