@@ -1,12 +1,16 @@
+<div>
+<h1>Welcome to Blah Blah Blah <mat-icon>chat</mat-icon></h1>
 <div class="container">
   <form class="message-form" [formGroup]="userLoginForm" (ngSubmit)="login()">
-    <label>Please login with your name</label>
+    <h2>Login with your name</h2>
     <div *ngIf="username.invalid && username.touched" class="mat-error">Please enter your name</div>
+
     <input type="text" class="form-control" formControlName="username" placeholder="Enter your name" required>
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" [disabled]="!userLoginForm.valid" class="btn btn-primary">
       <mat-icon>
         login
       </mat-icon>
     </button>
   </form>
+</div>
 </div>
