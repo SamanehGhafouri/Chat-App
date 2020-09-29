@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../Services/user.service";
 import * as firebase from "firebase";
@@ -10,14 +10,20 @@ import * as firebase from "firebase";
   styleUrls: ['./addroom.component.css']
 })
 export class AddroomComponent implements OnInit {
-  addRoomForm = new FormGroup({
-    roomname: new FormControl()
-  });
+  // addRoomForm = new FormGroup({
+  //   roomname: new FormControl()
+  // });
+  addRoomForm: FormGroup;
 
   constructor(private router: Router, private userService: UserService) {
   }
 
   addRooms() {
+    //validation
+    if (this.addRoomForm.invalid) {
+      return
+    }
+
     const name = this.addRoomForm.value.roomname;
     if (name != '') {
       this.userService.roomname = name;
@@ -52,7 +58,16 @@ export class AddroomComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    //validation
+    this.addRoomForm = new FormGroup({
+      roomname: new FormControl("", [Validators.required, Validators.minLength(1)])
+    });
+  }
+
+  //validation
+  get roomname(){
+    return this.addRoomForm.get('roomname');
   }
 
 }

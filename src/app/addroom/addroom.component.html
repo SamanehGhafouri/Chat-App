@@ -1,8 +1,13 @@
-<div class="container">
-  <form [formGroup]="addRoomForm">
-    <label>Enter room name</label>
-    <input type="text" class="form-control" formControlName="roomname" placeholder="Enter room name">
-    <button type="submit" class="btn btn-primary" (click)="addRooms()">Add Room</button>
-  </form>
-
+<div>
+  <h1>Add Rooms  <mat-icon>meeting_room</mat-icon></h1>
+  <div class="container">
+    <form [formGroup]="addRoomForm">
+      <h2>Enter a room name</h2>
+      <div *ngIf="roomname.invalid && roomname.touched" class="mat-error">Please enter a room name</div>
+      <input type="text" class="form-control" formControlName="roomname" placeholder="Room name">
+      <button type="submit" [disabled]="!addRoomForm.valid" class="btn btn-primary" (click)="addRooms()">
+        Add
+      </button>
+    </form>
+  </div>
 </div>

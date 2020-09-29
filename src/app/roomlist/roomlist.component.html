@@ -1,26 +1,24 @@
-<div class="container">
-  <h2>Welcome {{displayname}}</h2>
-  <form action="" (ngSubmit)="logout()">
-    <button type="submit" class="btn btn-primary">Logout</button>
-    <p>{{displayname}} Please click here to add rooms</p>
-    <button type="button" class="btn btn-primary" (click)="addRoom()">+</button>
+<div>
+  <h1>
+    Welcome {{displayname}}
+  </h1>
+  <div class="container">
+    <form (ngSubmit)="logout()">
+      <button class="mat-button" type="submit">
+        <mat-icon>logout</mat-icon>
 
-    <mat-card class="rooms-card" *ngFor="let room of displayroomname">
-      <mat-icon>link</mat-icon>
-      <span class="rooms-name">
+      </button>
+      <h3>{{displayname}} Please click here to add rooms</h3>
+      <mat-card class="add-rooms">
+        <a type="button" class="mat-icon-button" (click)="addRoom()">
+          <mat-icon>add</mat-icon>
+        </a>
+      </mat-card>
+      <mat-card class="rooms-card" *ngFor="let room of displayroomname">
+        <span class="rooms-name">
         <a [id]=room.roomId (click)="enterChatroom($event)">{{room.roomname}}</a>
       </span>
-
-<!--                  <button [id]=room.roomId class="btn btn-primary" (click)="enterChatroom($event)">{{room.roomname}}</button>-->
-    </mat-card>
-<!--      <ul>-->
-<!--        <li *ngFor="let room of displayroomname">-->
-<!--          <h1>-->
-<!--            {{room.roomname}}-->
-<!--            <button [id]=room.roomId class="btn btn-primary" (click)="enterChatroom($event)">{{room.roomname}}</button>-->
-<!--          </h1>-->
-<!--        </li>-->
-<!--      </ul>-->
-  </form>
-
+      </mat-card>
+    </form>
+  </div>
 </div>
