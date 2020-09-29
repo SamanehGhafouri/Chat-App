@@ -1,4 +1,30 @@
 .container{
-  padding-top: 20px;
   background-color:  #B8B1C1;
+  padding-top: 3%;
+  padding-bottom: 8%;
+  margin-top: 10%;
+  border-radius: 10px;
 }
+.mat-card{
+  background: #ffcb8e;
+}
+.rooms-name {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.rooms-card {
+  margin: 5px 20px;
+  color: #625261;
+
+}
+a{
+  color: #625261;
+  cursor: pointer;
+  font-weight: bold;
+}
+a:active{
+  background-color: lightblue;
+}
+
+
