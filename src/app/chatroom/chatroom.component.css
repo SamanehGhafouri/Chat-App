@@ -37,6 +37,7 @@
   position: absolute;
   margin-top: 5px;
   margin-left: 10px;
+  font-weight: bold;
 }
 
 footer.sticky-footer {
@@ -203,6 +204,7 @@ button {
 
 .btn {
   color: #625261;
+  font-weight: bold;
   background: #ffcb8e;
   border-color: #ffcb8e;
 }
@@ -213,5 +215,6 @@ input {
   padding-top: 9px;
   margin-top: 10px;
 }
+
 
 

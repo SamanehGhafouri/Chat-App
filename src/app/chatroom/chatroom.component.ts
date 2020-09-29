@@ -101,5 +101,9 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  backButton(){
+    this.router.navigate(['/roomlist']);
+  }
+
 }
 

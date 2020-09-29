@@ -65,9 +65,21 @@ h1 {
   color: #625261;
   background: #ffcb8e;
   border-color: #ffcb8e;
-  width: 10%;
+  font-weight: bold;
+
 }
 
 button {
   margin-top: 1%;
 }
+.users-card {
+  margin: 5px 20px;
+  padding: 10px 20px 10px 20px;
+  color: #625261;
+  font-weight: bold;
+  background: #ffcb8e;
+  border-color: #ffcb8e;
+  width: 20%;
+
+}
+

@@ -1,7 +1,15 @@
 <div class="example-container mat-elevation-z8">
   <mat-drawer-container class="drawer-container">
     <mat-drawer mode="side" opened class="left-drawer">
+
       <div class="users-pane">
+        <mat-card class="users-card">
+          <button class="btn btn-secondary" (click)="backButton()">
+            <mat-icon>arrow_back</mat-icon>
+            Back
+          </button>
+
+        </mat-card>
         <mat-card class="users-card">
           <button class="btn btn-secondary" (click)="logout()">
             Logout
