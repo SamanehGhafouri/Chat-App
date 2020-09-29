@@ -1,7 +1,12 @@
 <div class="container">
-  <form [formGroup]="userloginForm" (ngSubmit)="login()">
-    <h1>Please login with your name</h1>
-    <input type="text" class="form-control" formControlName="username">
-    <button type="submit" class="btn btn-primary">Login</button>
+  <form class="message-form" [formGroup]="userLoginForm" (ngSubmit)="login()">
+    <label>Please login with your name</label>
+    <div *ngIf="username.invalid && username.touched" class="mat-error">Please enter your name</div>
+    <input type="text" class="form-control" formControlName="username" placeholder="Enter your name" required>
+    <button type="submit" class="btn btn-primary">
+      <mat-icon>
+        login
+      </mat-icon>
+    </button>
   </form>
 </div>

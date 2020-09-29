@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl} from "@angular/forms";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
 import {UserService} from "../Services/user.service";
 import {Router} from "@angular/router";
 import * as firebase from "firebase";
@@ -11,15 +11,22 @@ import * as firebase from "firebase";
 })
 export class LoginComponent implements OnInit {
 
-  userloginForm = new FormGroup({
-    username: new FormControl(''),
-  });
+  // userloginForm = new FormGroup({
+  //   username: new FormControl(''),
+  // });
+  //
+  userLoginForm: FormGroup;
 
   constructor(private router: Router, private userService: UserService) {
   }
 
   login() {
-    const username = this.userloginForm.value.username;
+    //validation
+    if (this.userLoginForm.invalid) {
+      return
+    }
+
+    const username = this.userLoginForm.value.username;
     if (username != '') {
       this.userService.username = username;
 
@@ -52,6 +59,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    //Validation
+    this.userLoginForm = new FormGroup({
+      username: new FormControl("", [Validators.required, Validators.minLength(1)])
+    });
+  }
+
+  //Validation
+  get username() {
+    return this.userLoginForm.get('username');
   }
 
 }
