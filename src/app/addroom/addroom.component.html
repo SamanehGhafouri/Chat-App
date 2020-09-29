@@ -1,7 +1,12 @@
 <div>
-  <h1>Add Rooms  <mat-icon>meeting_room</mat-icon></h1>
+  <h1>Add Rooms
+    <mat-icon>meeting_room</mat-icon>
+  </h1>
   <div class="container">
     <form [formGroup]="addRoomForm">
+      <button type="submit" class="back-button" (click)="backButton()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
       <h2>Enter a room name</h2>
       <div *ngIf="roomname.invalid && roomname.touched" class="mat-error">Please enter a room name</div>
       <input type="text" class="form-control" formControlName="roomname" placeholder="Room name">

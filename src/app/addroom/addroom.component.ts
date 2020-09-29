@@ -58,7 +58,7 @@ export class AddroomComponent implements OnInit {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     //validation
     this.addRoomForm = new FormGroup({
       roomname: new FormControl("", [Validators.required, Validators.minLength(1)])
@@ -66,8 +66,13 @@ export class AddroomComponent implements OnInit {
   }
 
   //validation
-  get roomname(){
+  get roomname() {
     return this.addRoomForm.get('roomname');
+  }
+
+  backButton() {
+    this.router.navigate(['/roomlist']);
+
   }
 
 }
