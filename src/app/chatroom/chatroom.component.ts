@@ -15,14 +15,15 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   displayAuthors: Set<any>;
   displayChats: any[];
   curentUsername: any;
-
-  //scroll top
-  @ViewChild('chatcontent') private chatcontent: ElementRef;
-
   chatForm: FormGroup;
+  //scroll to bottom
+  @ViewChild('chatcontent') private chatcontent: ElementRef;
+  shouldScrollToBottom: boolean;
 
 
   constructor(private router: Router, private userService: UserService, private route: ActivatedRoute) {
+    this.shouldScrollToBottom = true;
+
     //route.params is an observable.
     //we can extract the value of the param into a hard value by .subscribe
     route.params.subscribe(params => {
@@ -37,7 +38,9 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   }
 
   submitChats() {
-    if (this.chatForm.invalid) {return}
+    if (this.chatForm.invalid) {
+      return
+    }
 
     const newChat = firebase.database().ref('chats/').push();
     newChat.set({
@@ -56,6 +59,7 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+
     //getting chats by roomIds
     firebase.database().ref('chats').orderByChild('roomId')
       .equalTo(this.roomId).on('value', (resp: any) => {
@@ -73,15 +77,13 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
       //sort chat by timestamp
       this.displayChats.sort((chat1, chat2) => chat1.timestamp < chat2.timestamp ? -1 : chat1.timestamp > chat2.timestamp ? 1 : 0)
 
+      //scroll to bottom after the call
+      this.shouldScrollToBottom = true;
     });
     //validators
     this.chatForm = new FormGroup({
       chatmsg: new FormControl("", [Validators.required, Validators.minLength(1)])
     });
-
-    //scroll
-    this.scrollToBottom();
-
   }
 
   //get validator
@@ -95,13 +97,16 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   }
 
   scrollToBottom(): void {
-    try {
-      this.chatcontent.nativeElement.scrollTop = this.chatcontent.nativeElement.scrollHeight;
-    } catch (err) {
+    if (this.shouldScrollToBottom) {
+      try {
+        this.chatcontent.nativeElement.scrollTop = this.chatcontent.nativeElement.scrollHeight;
+      } catch (err) {
+      }
     }
+    this.shouldScrollToBottom = false;
   }
 
-  backButton(){
+  backButton() {
     this.router.navigate(['/roomlist']);
   }
 
