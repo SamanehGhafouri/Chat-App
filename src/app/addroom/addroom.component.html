@@ -3,14 +3,14 @@
     <mat-icon>meeting_room</mat-icon>
   </h1>
   <div class="container">
-    <form [formGroup]="addRoomForm">
-      <button type="submit" class="back-button" (click)="backButton()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
+    <button type="submit" class="back-button" (click)="backButton()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <form [formGroup]="addRoomForm" (ngSubmit)="addRooms()">
       <h2>Enter a room name</h2>
       <div *ngIf="roomname.invalid && roomname.touched" class="mat-error">Please enter a room name</div>
-      <input type="text" class="form-control" formControlName="roomname" placeholder="Room name">
-      <button type="submit" [disabled]="!addRoomForm.valid" class="btn btn-primary" (click)="addRooms()">
+      <input type="text" class="form-control" formControlName="roomname" placeholder="Room name" required>
+      <button type="submit" [disabled]="!addRoomForm.valid" class="btn btn-primary">
         Add
       </button>
     </form>

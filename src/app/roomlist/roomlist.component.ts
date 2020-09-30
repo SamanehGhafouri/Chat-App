@@ -29,8 +29,8 @@ export class RoomlistComponent implements OnInit {
       // Extract or convert the Firebase response to the array of objects
       resp.forEach((childSnapshot: any) => {
         const item = childSnapshot.val();
-        console.log("This is the item");
-        console.log(item);
+        // console.log("This is the item");
+        // console.log(item);
         this.displayroomname.push(item);
       });
     });

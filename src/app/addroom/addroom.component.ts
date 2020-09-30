@@ -10,9 +10,6 @@ import * as firebase from "firebase";
   styleUrls: ['./addroom.component.css']
 })
 export class AddroomComponent implements OnInit {
-  // addRoomForm = new FormGroup({
-  //   roomname: new FormControl()
-  // });
   addRoomForm: FormGroup;
 
   constructor(private router: Router, private userService: UserService) {
@@ -20,9 +17,8 @@ export class AddroomComponent implements OnInit {
 
   addRooms() {
     //validation
-    if (this.addRoomForm.invalid) {
-      return
-    }
+    if (this.addRoomForm.invalid) {return}
+
 
     const name = this.addRoomForm.value.roomname;
     if (name != '') {
@@ -41,16 +37,22 @@ export class AddroomComponent implements OnInit {
             userId: this.userService.userId,
             username: this.userService.username,
             roomId: roomKey
+
           });
+
+
+
 
         } else {
           // we assume that there is only one object since the query has a limit to 1
           // TODO: we can and should enforce this assumed unique username as a Firebase/Database rule.
           // TODO: Display error message to the user...
-          console.log("ERROR: Room with name already exists!");
+          // console.log("ERROR: Room with name already exists!");
+          return
         }
         this.router.navigate(['/roomlist']);
       });
+
 
     } else {
       console.log('Must provide roomname');
@@ -71,6 +73,7 @@ export class AddroomComponent implements OnInit {
   }
 
   backButton() {
+
     this.router.navigate(['/roomlist']);
 
   }
