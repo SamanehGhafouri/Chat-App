@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
+  firebaseConfig : {
     apiKey: "AIzaSyCV5d_85_gQ4RWh58teltVPtudhuRpW67c",
     authDomain: "roomtochat.firebaseapp.com",
     databaseURL: "https://roomtochat.firebaseio.com",
